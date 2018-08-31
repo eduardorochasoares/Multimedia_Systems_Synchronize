@@ -1,0 +1,12 @@
+prim
+plac
+gráf
+par
+diz
+com
+ela
+vai
+est
+traç
+no
+persist

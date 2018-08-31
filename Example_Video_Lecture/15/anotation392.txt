@@ -1,0 +1,4 @@
+os
+motor
+de
+gam

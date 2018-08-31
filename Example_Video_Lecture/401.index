@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<index>
+  <!-- Nome da disciplina -->
+  <main_title> Computação gráfica </main_title>
+  <class>
+    <number> 1 </number>
+    <!-- Nome da aula -->
+    <sub_title> Dispositivos e pacotes de software para computação gráfica </sub_title>
+  </class>
+  <ind_item>
+    <time> 0 </time>
+    <text> Conteúdo </text>
+  </ind_item>
+  <ind_item>
+    <time> 110.711 </time>
+    <text> Dispositivos </text>
+  </ind_item>
+  <ind_item>
+    <time> 396.53 </time>
+    <text> Natureza multidisciplinar </text>
+    <ind_item>
+      <time>918</time>
+      <text>Integração</text>
+    </ind_item>
+  </ind_item>
+  <ind_item>
+    <time> 940.174 </time>
+    <text> Aplicações: Um pouco sobre roteiros... </text>
+  </ind_item>
+  <ind_item>
+    <time>1212</time>
+    <text> Ferramentas </text>
+    <ind_item>
+      <time> 1276.81 </time>
+      <text> Ferramenta #1 </text>
+    </ind_item>
+    <ind_item>
+      <time> 1368.07 </time>
+      <text> Ferramentas de modelagem </text>
+    </ind_item>
+    <ind_item>
+      <time> 1987.92 </time>
+      <text> Modelagem  de personagens </text>
+    </ind_item>
+    <ind_item>
+      <time> 2482.62 </time>
+      <text> Animação </text>
+    </ind_item>
+    <ind_item>
+      <time> 2641.54 </time>
+      <text> Terrenos </text>
+    </ind_item>
+    <ind_item>
+      <time> 2817.45 </time>
+      <text> Pintura 3D </text>
+    </ind_item>
+    <ind_item>
+      <time> 2906.17 </time>
+      <text> Modelagem baseada em imagens </text>
+    </ind_item>
+    <ind_item>
+      <time> 3006.87 </time>
+      <text> Conversores </text>
+    </ind_item>
+  </ind_item>
+  <ind_item>
+    <time> 3127.73 </time>
+    <text> Editores de Shaders </text>
+  </ind_item>
+  <ind_item>
+    <time> 3197.96 </time>
+    <text> Game engines </text>
+    <ind_item>
+      <time> 3274.04 </time>
+      <text> Caros </text>
+    </ind_item>
+    <ind_item>
+      <time> 3303.6 </time>
+      <text> Baratos </text>
+    </ind_item>
+    <ind_item>
+      <time> 3352.72 </time>
+      <text> Open Source </text>
+    </ind_item>
+    <ind_item>
+      <time> 3407.67 </time>
+      <text> Game engine da UFF </text>
+    </ind_item>
+  </ind_item>
+</index>

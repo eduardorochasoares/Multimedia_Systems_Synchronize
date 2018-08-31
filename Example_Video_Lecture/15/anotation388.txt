@@ -1,0 +1,8 @@
+program
+o
+comport
+do
+objet
+program
+as
+físic
