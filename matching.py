@@ -34,6 +34,7 @@ stopwordspt.append("parte")
 stopwordspt.append("início")
 stopwordspt.append("terminando")
 stopwordspt.append("próxima")
+stopwordspt.append("introdução")
 
 
 stopwordspt = [stemmer.stem(stopwords) for stopwords in stopwordspt]
