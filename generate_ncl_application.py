@@ -54,7 +54,7 @@ def createNCLApplication(matching, scene_boundaries, root_path, root_path_exec):
 	for t in times:
 		startTime.append(t)
 
-
+	startTime = sorted(list(set(startTime)))
 	namespace = "{http://www.ncl.org.br/NCL3.0/EDTVProfile}"
 	tree = ET.parse(root_path_exec+'main.ncl')
 	root = tree.getroot()
@@ -73,16 +73,25 @@ def createNCLApplication(matching, scene_boundaries, root_path, root_path_exec):
 	dimensions = float(100/len(scene_boundaries))
 	dimension_count = 0
 
-
+	scene_boundaries = sorted(scene_boundaries)
 	for scene in scene_boundaries:
 		'''Create the regions of topic list'''
-		SubElement(region, "region", attrib={'id': 'rgmenu'+str(count), 'left' :'0%', 'width' : '15%',
+		SubElement(region, "region", attrib={'id': 'rgmenu'+str(count), 'left' :'0%', 'width' :  '20%',
 		'top' : str(dimension_count) + "%", 'height' : str(dimensions) + "%", 'zIndex' : '3'})
 
 		'''Create the descriptors for the topic list regions'''
-		SubElement(descriptor_base, "descriptor", attrib={'id': 'dmenu'+str(count),
-		'region' : 'rgmenu' + str(count), 'focusIndex': str(count + 1), 'moveDown' : str(count+2), 'moveUp' : str(count),
-		 'focusBorderWidth' : '-1', 'selBorderColor':'black'})
+		if count == 0:
+			SubElement(descriptor_base, "descriptor", attrib={'id': 'dmenu'+str(count),
+			'region' : 'rgmenu' + str(count), 'focusIndex': str(count + 1), 'moveDown' : str(count+2), 'moveUp' : str(len(scene_boundaries)),
+			 'focusBorderWidth' : '-1', 'selBorderColor':'black'})
+		elif count == len(scene_boundaries) - 1:
+			SubElement(descriptor_base, "descriptor", attrib={'id': 'dmenu'+str(count),
+			'region' : 'rgmenu' + str(count), 'focusIndex': str(count + 1), 'moveDown' : str(1), 'moveUp' : str(count),
+			 'focusBorderWidth' : '-1', 'selBorderColor':'black'})
+		else:
+			SubElement(descriptor_base, "descriptor", attrib={'id': 'dmenu'+str(count),
+			'region' : 'rgmenu' + str(count), 'focusIndex': str(count + 1), 'moveDown' : str(count+2), 'moveUp' : str(count),
+			 'focusBorderWidth' : '-1', 'selBorderColor':'black'})
 
 		SubElement(media, "area", attrib={'id': 'scene'+str(count), 'begin':''+str(startTime[scene[0]])+'s'+''})
 		timeFile = Image.new('RGB', (100, 30), color = (0, 0, 0))
@@ -90,12 +99,19 @@ def createNCLApplication(matching, scene_boundaries, root_path, root_path_exec):
 		d.text((10,10),str(int(startTime[scene[0]])) + " secs" , fill=(255,255,255))
 		timeFile.save("time"+str(count)+".png")
 
+		linkSelectionTimeProgress = SubElement(body, 'link', attrib={'id' : 'selectTimeProgress'+str(count),
+		'xconnector' : 'onBeginSet_var'})
+		SubElement(linkSelectionTimeProgress, 'bind', attrib={'role' : 'onBegin', 'component' : 'media',
+		'interface' : 'scene'+str(count)})
+		bind = SubElement(linkSelectionTimeProgress, "bind", attrib={'role': 'set', 'component' : 'globalVar',
+		'interface' :'service.currentFocus'})
+		SubElement(bind, "bindParam", attrib={'name': 'var', 'value' : str(count+1)})
 
 		move(root_path_exec+"time"+str(count)+".png", media_path+"time"+str(count)+".png")
 		SubElement(body, "port", attrib={'id': 'entryTime' +str(count),'component':'mMenuTime' + str(count)})
 
-		mediaTime = SubElement(body, "media", attrib={'id' : 'mMenuTime' + str(count),'fit':'meet', 'src' : 'media/time'+str(count)+'.png', 'descriptor' : 'dmenu'+str(count)})
-		SubElement(mediaTime, "property", attrib={'name':'fontSize', 'value': '20'})
+		mediaTime = SubElement(body, "media", attrib={'id' : 'mMenuTime' + str(count),'fit':'meetBest', 'src' : 'media/time'+str(count)+'.png', 'descriptor' : 'dmenu'+str(count)})
+		
 
 		link = SubElement(body, "link", attrib={'id':'linkTime'+str(count), 'xconnector':'onSelectionStopStart'})
 		SubElement(link,"bind", attrib={'role': 'onSelection', 'component' : 'mMenuTime'+str(count)})
